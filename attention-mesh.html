@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATTENTION MESH · Your Network. Your Ads. Your Cut.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:      #f5f0e8;
+      --ink:     #1a1209;
+      --red:     #c0281a;
+      --red2:    #8c1c0f;
+      --cream:   #ede7d6;
+      --mid:     #7a6a50;
+      --rule:    rgba(26,18,9,0.15);
+      --mono:    'DM Mono', monospace;
+      --serif:   'Playfair Display', Georgia, serif;
+      --display: 'Bebas Neue', Impact, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--mono);
+      font-size: 14px;
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NEWSPRINT GRAIN ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.04;
+      pointer-events: none;
+      z-index: 999;
+      mix-blend-mode: multiply;
+    }
+
+    /* ── MASTHEAD ── */
+    .masthead {
+      border-bottom: 4px double var(--ink);
+      padding: 12px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 100;
+    }
+    .masthead-brand {
+      font-family: var(--display);
+      font-size: 22px;
+      letter-spacing: 0.12em;
+      color: var(--ink);
+    }
+    .masthead-brand span { color: var(--red); }
+    .masthead-nav {
+      display: flex;
+      gap: 24px;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .masthead-nav a {
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .masthead-nav a:hover { color: var(--red); }
+
+    @media (max-width: 600px) {
+      .masthead { padding: 12px 20px; }
+      .masthead-nav { display: none; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      border-bottom: 2px solid var(--ink);
+      padding: 0 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 92vh;
+      position: relative;
+      overflow: hidden;
+    }
+    @media (max-width: 700px) {
+      .hero { grid-template-columns: 1fr; padding: 0 20px; min-height: auto; }
+    }
+
+    .hero-left {
+      border-right: 1px solid var(--rule);
+      padding: 60px 48px 60px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    @media (max-width: 700px) {
+      .hero-left { border-right: none; border-bottom: 1px solid var(--rule); padding: 48px 0 40px; }
+    }
+
+    .hero-kicker {
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+    .hero-kicker::before { content: '— '; }
+
+    h1 {
+      font-family: var(--display);
+      font-size: clamp(56px, 9vw, 108px);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+    h1 em {
+      font-style: normal;
+      color: var(--red);
+      display: block;
+    }
+
+    .hero-lede {
+      font-family: var(--serif);
+      font-size: clamp(16px, 2.2vw, 21px);
+      line-height: 1.5;
+      color: var(--ink);
+      max-width: 480px;
+      font-weight: 400;
+      margin-bottom: 36px;
+    }
+    .hero-lede strong { font-weight: 700; }
+
+    .hero-cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .btn-primary {
+      background: var(--red);
+      color: #fff;
+      border: none;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .btn-primary:hover { background: var(--red2); transform: translateY(-1px); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--ink);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .btn-ghost:hover { border-color: var(--red); color: var(--red); }
+
+    .hero-footnote {
+      font-size: 10px;
+      color: var(--mid);
+      letter-spacing: 0.05em;
+      line-height: 1.5;
+      border-top: 1px solid var(--rule);
+      padding-top: 16px;
+      max-width: 420px;
+    }
+
+    /* ── HERO RIGHT: TICKER ── */
+    .hero-right {
+      padding: 60px 0 60px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0;
+    }
+    @media (max-width: 700px) { .hero-right { padding: 40px 0 48px; } }
+
+    .ticker-label {
+      font-size: 9px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 20px;
+    }
+
+    .stat-block {
+      border-top: 1px solid var(--rule);
+      padding: 20px 0;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0 20px;
+      align-items: baseline;
+      animation: fadeUp 0.6s both;
+    }
+    .stat-block:nth-child(2) { animation-delay: 0.1s; }
+    .stat-block:nth-child(3) { animation-delay: 0.2s; }
+    .stat-block:nth-child(4) { animation-delay: 0.3s; }
+    .stat-block:nth-child(5) { animation-delay: 0.4s; }
+    .stat-block:nth-child(6) { animation-delay: 0.5s; }
+    .stat-block:last-child { border-bottom: 1px solid var(--rule); }
+
+    .stat-num {
+      font-family: var(--display);
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1;
+      color: var(--ink);
+      min-width: 140px;
+    }
+    .stat-num.red { color: var(--red); }
+
+    .stat-desc {
+      font-size: 11px;
+      color: var(--mid);
+      line-height: 1.5;
+      letter-spacing: 0.01em;
+    }
+    .stat-desc strong { color: var(--ink); font-weight: 500; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RUNNING RULE ── */
+    .running-rule {
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 8px 40px;
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--mid);
+      display: flex;
+      gap: 40px;
+      overflow: hidden;
+    }
+    .running-rule span { white-space: nowrap; flex-shrink: 0; }
+    @media (max-width: 600px) { .running-rule { padding: 8px 20px; gap: 24px; } }
+
+    /* ── SECTIONS ── */
+    .shell {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    @media (max-width: 600px) { .shell { padding: 0 20px; } }
+
+    section { border-bottom: 1px solid var(--rule); }
+
+    .sec-inner {
+      padding: 80px 0;
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 0 60px;
+    }
+    @media (max-width: 700px) {
+      .sec-inner { grid-template-columns: 1fr; gap: 24px 0; padding: 48px 0; }
+    }
+
+    .sec-label {
+      font-size: 9px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--mid);
+      padding-top: 6px;
+      line-height: 1.6;
+    }
+    .sec-label strong { display: block; color: var(--red); font-size: 11px; letter-spacing: 0.15em; margin-bottom: 4px; font-weight: 500; }
+
+    h2 {
+      font-family: var(--display);
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 0.95;
+      letter-spacing: 0.03em;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+
+    .body-copy {
+      font-size: 15px;
+      color: var(--ink);
+      max-width: 640px;
+      line-height: 1.75;
+      margin-bottom: 36px;
+    }
+    .body-copy strong { font-weight: 500; }
+    .body-copy em { font-style: italic; color: var(--mid); }
+
+    /* ── ARCHITECTURE DIAGRAM ── */
+    .arch-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 640px;
+      margin-bottom: 36px;
+    }
+
+    .arch-node {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 0 24px;
+      padding: 18px 0;
+      border-top: 1px solid var(--rule);
+      align-items: start;
+      position: relative;
+      transition: background 0.15s;
+    }
+    .arch-node:last-child { border-bottom: 1px solid var(--rule); }
+    .arch-node:hover { background: var(--cream); margin: 0 -16px; padding: 18px 16px; }
+
+    .arch-tag {
+      font-family: var(--display);
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      color: var(--red);
+      padding-top: 2px;
+    }
+    .arch-body-title {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .arch-body-text {
+      font-size: 12px;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    .arch-arrow {
+      text-align: center;
+      color: var(--red);
+      font-size: 18px;
+      padding: 4px 0;
+      opacity: 0.5;
+      padding-left: 56px;
+    }
+
+    /* ── MATH PANEL ── */
+    .math-panel {
+      background: var(--ink);
+      color: var(--bg);
+      padding: 48px;
+      margin-bottom: 36px;
+      max-width: 640px;
+    }
+    @media (max-width: 600px) { .math-panel { padding: 28px 24px; } }
+
+    .math-panel .panel-title {
+      font-size: 9px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 28px;
+    }
+
+    .math-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      padding: 12px 0;
+      border-top: 1px solid rgba(245,240,232,0.1);
+      align-items: baseline;
+    }
+    .math-row:last-child { border-bottom: 1px solid rgba(245,240,232,0.1); }
+    .math-label {
+      font-size: 12px;
+      color: rgba(245,240,232,0.6);
+      line-height: 1.4;
+    }
+    .math-val {
+      font-family: var(--display);
+      font-size: 28px;
+      letter-spacing: 0.05em;
+      color: var(--bg);
+      white-space: nowrap;
+    }
+    .math-val.accent { color: var(--red); }
+
+    .math-bottom {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(245,240,232,0.15);
+      font-size: 13px;
+      color: rgba(245,240,232,0.7);
+      line-height: 1.65;
+    }
+    .math-bottom strong { color: var(--bg); }
+
+    /* ── HOW IT WORKS ── */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 640px;
+      margin-bottom: 36px;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 0 20px;
+      padding: 22px 0;
+      border-top: 1px solid var(--rule);
+    }
+    .step:last-child { border-bottom: 1px solid var(--rule); }
+    .step-num {
+      font-family: var(--display);
+      font-size: 40px;
+      line-height: 1;
+      color: var(--red);
+      opacity: 0.35;
+    }
+    .step-body-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 4px;
+      letter-spacing: 0.02em;
+    }
+    .step-body-text {
+      font-size: 12px;
+      color: var(--mid);
+      line-height: 1.65;
+    }
+    .step-body-text code {
+      font-family: var(--mono);
+      font-size: 11px;
+      background: var(--cream);
+      padding: 2px 6px;
+      color: var(--ink);
+    }
+
+    /* ── CPM TABLE ── */
+    .cpm-table {
+      width: 100%;
+      max-width: 640px;
+      border-collapse: collapse;
+      margin-bottom: 36px;
+      font-size: 12px;
+    }
+    .cpm-table thead tr {
+      border-bottom: 2px solid var(--ink);
+    }
+    .cpm-table th {
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mid);
+      font-weight: 400;
+      padding: 10px 16px 10px 0;
+      text-align: left;
+    }
+    .cpm-table tbody tr {
+      border-bottom: 1px solid var(--rule);
+      transition: background 0.12s;
+    }
+    .cpm-table tbody tr:hover { background: var(--cream); }
+    .cpm-table td {
+      padding: 12px 16px 12px 0;
+      color: var(--ink);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+    .cpm-table td:first-child {
+      font-family: var(--display);
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      color: var(--red);
+      white-space: nowrap;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      font-family: var(--mono);
+    }
+    .badge-hi { background: var(--ink); color: var(--bg); }
+    .badge-md { border: 1px solid var(--ink); color: var(--ink); }
+    .badge-lo { border: 1px solid var(--mid); color: var(--mid); }
+
+    /* ── CONSENT CARD ── */
+    .consent-card {
+      background: var(--cream);
+      border: 1.5px solid var(--ink);
+      padding: 40px;
+      max-width: 640px;
+      margin-bottom: 36px;
+      position: relative;
+    }
+    .consent-card::before {
+      content: 'INFORMED CONSENT';
+      position: absolute;
+      top: -1px;
+      left: 40px;
+      font-size: 8px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      background: var(--ink);
+      color: var(--bg);
+      padding: 3px 12px;
+    }
+    .consent-card p {
+      font-size: 13px;
+      color: var(--ink);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .consent-card p:last-of-type { margin-bottom: 28px; }
+    .consent-checks {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .consent-check {
+      display: flex;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--ink);
+      align-items: flex-start;
+    }
+    .check-box {
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid var(--ink);
+      flex-shrink: 0;
+      margin-top: 2px;
+      cursor: pointer;
+      position: relative;
+      transition: background 0.15s;
+    }
+    .check-box.checked {
+      background: var(--red);
+      border-color: var(--red);
+    }
+    .check-box.checked::after {
+      content: '✓';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    /* ── RISK TABLE ── */
+    .risk-table {
+      width: 100%;
+      max-width: 640px;
+      border-collapse: collapse;
+      margin-bottom: 36px;
+      font-size: 12px;
+    }
+    .risk-table thead tr { border-bottom: 2px solid var(--ink); }
+    .risk-table th {
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mid);
+      font-weight: 400;
+      padding: 10px 16px 10px 0;
+      text-align: left;
+    }
+    .risk-table td {
+      padding: 12px 16px 12px 0;
+      vertical-align: top;
+      line-height: 1.5;
+      border-bottom: 1px solid var(--rule);
+    }
+    .sev { font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase; padding: 2px 7px; }
+    .sev-hi { background: var(--red); color: white; }
+    .sev-md { border: 1px solid var(--ink); color: var(--ink); }
+    .sev-lo { border: 1px solid var(--mid); color: var(--mid); }
+
+    /* ── SUMMARY CTA ── */
+    .summary-band {
+      background: var(--ink);
+      color: var(--bg);
+      padding: 80px 40px;
+      text-align: center;
+    }
+    @media (max-width: 600px) { .summary-band { padding: 48px 24px; } }
+
+    .summary-band .kicker {
+      font-size: 9px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 20px;
+    }
+    .summary-band h2 {
+      color: var(--bg);
+      font-size: clamp(36px, 6vw, 72px);
+      max-width: 760px;
+      margin: 0 auto 20px;
+      line-height: 0.95;
+    }
+    .summary-band p {
+      font-size: 15px;
+      color: rgba(245,240,232,0.65);
+      max-width: 520px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+      font-family: var(--serif);
+    }
+    .summary-band .btn-row {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .summary-band .btn-primary {
+      background: var(--red);
+      padding: 16px 36px;
+      font-size: 12px;
+    }
+    .summary-band .btn-ghost {
+      border-color: rgba(245,240,232,0.4);
+      color: rgba(245,240,232,0.8);
+      padding: 16px 36px;
+      font-size: 12px;
+    }
+    .summary-band .btn-ghost:hover {
+      border-color: var(--bg);
+      color: var(--bg);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 2px solid var(--ink);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    @media (max-width: 600px) { footer { padding: 20px; } }
+    .stack-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .stack-pill {
+      border: 1px solid var(--rule);
+      padding: 3px 10px;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      color: var(--mid);
+    }
+
+    /* ── COUNTER ANIMATION ── */
+    @keyframes countUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .count-anim { animation: countUp 0.8s 0.4s both; }
+  </style>
+</head>
+<body>
+
+  <!-- MASTHEAD -->
+  <header class="masthead">
+    <div class="masthead-brand">ATTENTION<span>MESH</span></div>
+    <nav class="masthead-nav">
+      <a href="#the-math">The Math</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#ad-revenue">Revenue</a>
+      <a href="#consent">Consent</a>
+      <a href="#join">Join</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-kicker">Your Devices. Your Network. Your Terms.</div>
+      <h1>YOU OWN<em>YOUR</em>ATTENTION</h1>
+      <p class="hero-lede">
+        We built a <strong>transparent proxy on your own network</strong> — the same technology 
+        enterprises pay Zscaler millions for — to intercept every ad before it loads, 
+        strip the tracking, and replace it with a clean one that <strong>pays you</strong>. 
+        You consented. That changes everything.
+      </p>
+      <div class="hero-cta-row">
+        <button class="btn-primary" onclick="document.getElementById('join').scrollIntoView({behavior:'smooth'})">Get Your Node</button>
+        <button class="btn-ghost" onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'})">See How It Works</button>
+      </div>
+      <p class="hero-footnote">
+        HAProxy transparent proxy · Unbound DNS resolver · Device-wide VPN · 
+        Consent-verified ad impressions. No cloud dependency. No tracking. 
+        Your data never leaves your network.
+      </p>
+    </div>
+
+    <div class="hero-right">
+      <div class="ticker-label">// The Attention Economy · U.S. Numbers</div>
+
+      <div class="stat-block">
+        <div class="stat-num count-anim">10,000</div>
+        <div class="stat-desc"><strong>ads per day</strong> — the average American is exposed to. Most are ignored. All cost you time.</div>
+      </div>
+
+      <div class="stat-block">
+        <div class="stat-num count-anim">~2 hrs</div>
+        <div class="stat-desc"><strong>of your day</strong> lost to ad load times, pre-rolls, interstitials, and forced views. Every year.</div>
+      </div>
+
+      <div class="stat-block">
+        <div class="stat-num red count-anim">~730 hrs</div>
+        <div class="stat-desc"><strong>per year, per American</strong> consumed by advertising. That's 43,800 minutes. Gone.</div>
+      </div>
+
+      <div class="stat-block">
+        <div class="stat-num count-anim">$0</div>
+        <div class="stat-desc"><strong>you were paid.</strong> Meanwhile, a verified human ad impression sells for $5–$20 CPM. They kept it all.</div>
+      </div>
+
+      <div class="stat-block">
+        <div class="stat-num red count-anim">$18.25</div>
+        <div class="stat-desc"><strong>estimated annual value</strong> of your attention at a conservative $2.50 CPM. The platforms charged advertisers for it. You got nothing.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RUNNING RULE -->
+  <div class="running-rule">
+    <span>HAProxy · Transparent Proxy</span>
+    <span>·</span>
+    <span>Unbound · DNS Resolver</span>
+    <span>·</span>
+    <span>Device-Wide VPN</span>
+    <span>·</span>
+    <span>Consented Impressions</span>
+    <span>·</span>
+    <span>You Get Paid</span>
+    <span>·</span>
+    <span>No Cloud</span>
+    <span>·</span>
+    <span>No Master</span>
+  </div>
+
+  <!-- SECTION: THE MATH -->
+  <section id="the-math">
+    <div class="shell">
+      <div class="sec-inner">
+        <div class="sec-label">
+          <strong>§ 01</strong>
+          The Math<br>Nobody<br>Showed You
+        </div>
+        <div>
+          <h2>WHAT YOUR ATTENTION IS ACTUALLY WORTH</h2>
+          <p class="body-copy">
+            The ad industry has a price for your attention. It's published, traded, and auctioned 
+            in real time. They call it CPM — cost per thousand impressions. A <em>verified human, 
+            consented impression</em> commands $5–$20. An anonymous one stolen from a tracking 
+            pixel gets $2.50. The difference is consent. They never asked. We do.
+          </p>
+
+          <div class="math-panel">
+            <div class="panel-title">// Attention Economics · Annual Per-User Calculation</div>
+            <div class="math-row">
+              <div class="math-label">Ad exposures per day (US avg)</div>
+              <div class="math-val">10,000</div>
+            </div>
+            <div class="math-row">
+              <div class="math-label">Days per year</div>
+              <div class="math-val">365</div>
+            </div>
+            <div class="math-row">
+              <div class="math-label">Annual impressions per person</div>
+              <div class="math-val">3.65M</div>
+            </div>
+            <div class="math-row">
+              <div class="math-label">At $2.50 CPM (anonymous floor)</div>
+              <div class="math-val accent">$9,125</div>
+            </div>
+            <div class="math-row">
+              <div class="math-label">At $5.00 CPM (consented floor)</div>
+              <div class="math-val accent">$18,250</div>
+            </div>
+            <div class="math-row">
+              <div class="math-label">Time lost to ads annually</div>
+              <div class="math-val">730 hrs</div>
+            </div>
+            <div class="math-row">
+              <div class="math-label">That's 43,800 minutes of your life per year</div>
+              <div class="math-val">43,800 min</div>
+            </div>
+            <div class="math-row">
+              <div class="math-label">Value of one minute of attention at $5 CPM</div>
+              <div class="math-val accent">$0.005</div>
+            </div>
+            <div class="math-bottom">
+              <strong>The platforms charged advertisers ~$9,000–$18,000 for your annual attention.</strong> 
+              They kept it. Your cut was zero. That's the arrangement you've been in. 
+              We're offering a different one.
+            </div>
+          </div>
+
+          <p class="body-copy" style="font-size:13px; color:var(--mid);">
+            Note: Not every impression is monetizable through our mesh — app-level cert pinning 
+            blocks 30–50% of mobile traffic. We disclose this plainly. Your actual earnings 
+            are lower than the theoretical maximum. So is theirs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: HOW IT WORKS -->
+  <section id="how-it-works">
+    <div class="shell">
+      <div class="sec-inner">
+        <div class="sec-label">
+          <strong>§ 02</strong>
+          Architecture<br>Plain English
+        </div>
+        <div>
+          <h2>A MAN IN THE MIDDLE — FOR YOURSELF</h2>
+          <p class="body-copy">
+            This is the same technology Zscaler charges enterprises $1M/year for, 
+            Cisco Umbrella runs in every Fortune 500, and China uses for the Great Firewall. 
+            The difference is direction. We point it at the surveillance stack. 
+            You own the box. You own the keys. You gave the consent.
+          </p>
+
+          <div class="arch-flow">
+            <div class="arch-node">
+              <div class="arch-tag">DEVICE</div>
+              <div>
+                <div class="arch-body-title">Your Phone, Laptop, TV</div>
+                <div class="arch-body-text">All traffic — HTTPS included — routes through the local VPN tunnel. No app to install on each device. One network-level enrollment.</div>
+              </div>
+            </div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-node">
+              <div class="arch-tag">VPN</div>
+              <div>
+                <div class="arch-body-title">Device-Wide Tunnel</div>
+                <div class="arch-body-text">WireGuard tunnel captures all device traffic transparently. No split tunneling on the ad path — every request goes through the mesh.</div>
+              </div>
+            </div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-node">
+              <div class="arch-tag">HAPROXY</div>
+              <div>
+                <div class="arch-body-title">Transparent Proxy (MITM Layer)</div>
+                <div class="arch-body-text">HAProxy terminates TLS using the CA certificate you installed at enrollment. Inspects the stream, identifies ad requests by domain and payload pattern, and hands them to the swap engine. Everything else passes through untouched. Your passwords and messages are not touched — banking and finance domains are on a fail-open whitelist.</div>
+              </div>
+            </div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-node">
+              <div class="arch-tag">UNBOUND</div>
+              <div>
+                <div class="arch-body-title">DNS Resolver — No Upstream Leak</div>
+                <div class="arch-body-text">All DNS queries resolve locally through Unbound with DNSSEC validation. No queries reach ISP resolvers or Google/Cloudflare. Tracking domains resolve to <code>0.0.0.0</code> before HAProxy even sees the request.</div>
+              </div>
+            </div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-node">
+              <div class="arch-tag">AD SWAP</div>
+              <div>
+                <div class="arch-body-title">Consent-Verified Impression</div>
+                <div class="arch-body-text">DistilBERT classifier (80MB, 15ms inference) categorizes page context. Waterfall auction across EthicalAds, Carbon, and AdEx selects highest CPM in 100ms. Clean ad serves in place of the original. Impression is logged as verified-human, consented — the premium tier.</div>
+              </div>
+            </div>
+            <div class="arch-arrow">↓</div>
+            <div class="arch-node">
+              <div class="arch-tag">SETTLE</div>
+              <div>
+                <div class="arch-body-title">Daily Earnings · Your Account</div>
+                <div class="arch-body-text">CPM revenue distributed daily. Settlement via Stripe Connect (default) or Lightning Network. No tokens, no chain, no gas. Dollars.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="steps">
+            <div class="step">
+              <div class="step-num">01</div>
+              <div>
+                <div class="step-body-title">Unbox and plug in the node</div>
+                <div class="step-body-text">Hardened single-binary. Ethernet in, QR code on screen. No configuration. If the QR is unreadable, there's a manual IP:PORT fallback.</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">02</div>
+              <div>
+                <div class="step-body-title">Scan QR · Join the network</div>
+                <div class="step-body-text">Your device joins via mTLS with Ed25519 self-signed certs. TOFU hardened with SPKI pinning. No central CA. Trust is peer-to-peer.</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">03</div>
+              <div>
+                <div class="step-body-title">Install the CA certificate — one time</div>
+                <div class="step-body-text">The captive portal walks you through installation on each device. This is the explicit, informed consent step. You know what this does. The proxy can't do its job without it. No cert → no interception → no earnings → passthrough only.</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">04</div>
+              <div>
+                <div class="step-body-title">Every ad on every device is now yours</div>
+                <div class="step-body-text">HAProxy routes ad traffic, Unbound kills trackers at DNS, the classifier prices the slot, the auction fills it. You see a clean ad. The earnings accrue.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: AD REVENUE -->
+  <section id="ad-revenue">
+    <div class="shell">
+      <div class="sec-inner">
+        <div class="sec-label">
+          <strong>§ 03</strong>
+          Revenue<br>Waterfall
+        </div>
+        <div>
+          <h2>WHAT THE AUCTION PAYS</h2>
+          <p class="body-copy">
+            Every ad slot runs a parallel auction across three demand partners with a 100ms timeout. 
+            Highest CPM wins. The classifier routes high-value context to premium tiers first. 
+            Floor fill is near-100% — you never see a blank slot.
+          </p>
+
+          <table class="cpm-table">
+            <thead>
+              <tr>
+                <th>Tier</th>
+                <th>Partner</th>
+                <th>Context</th>
+                <th>CPM Range</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>T0</td>
+                <td>Private Pre-Bid</td>
+                <td>High-intent domains (Zillow, Cars.com, finance)</td>
+                <td>$10–$20</td>
+                <td><span class="badge badge-hi">Requires 50K+ mo. impressions</span></td>
+              </tr>
+              <tr>
+                <td>T1</td>
+                <td>EthicalAds</td>
+                <td>Tech, developer, SaaS content</td>
+                <td>$2.50–$5.00</td>
+                <td><span class="badge badge-md">Active</span></td>
+              </tr>
+              <tr>
+                <td>T2</td>
+                <td>Carbon Ads</td>
+                <td>Design, productivity, creative</td>
+                <td>$1.50–$3.50</td>
+                <td><span class="badge badge-md">Active</span></td>
+              </tr>
+              <tr>
+                <td>T3</td>
+                <td>AdEx</td>
+                <td>Everything else — floor fill</td>
+                <td>$1.00–$2.50</td>
+                <td><span class="badge badge-lo">~100% fill rate</span></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="math-panel">
+            <div class="panel-title">// Example Node Earnings · Conservative Baseline</div>
+            <div class="math-row">
+              <div class="math-label">Daily impressions (household, 3 devices)</div>
+              <div class="math-val">~340</div>
+            </div>
+            <div class="math-row">
+              <div class="math-label">Effective CPM (mixed tiers, cert bypass accounted)</div>
+              <div class="math-val">$2.10</div>
+            </div>
+            <div class="math-row">
+              <div class="math-label">Daily earnings (baseline)</div>
+              <div class="math-val accent">$0.34</div>
+            </div>
+            <div class="math-row">
+              <div class="math-label">Genesis Boost (first 100 nodes, 1.5×)</div>
+              <div class="math-val accent">$0.51</div>
+            </div>
+            <div class="math-row">
+              <div class="math-label">Annual with genesis boost</div>
+              <div class="math-val accent">~$186</div>
+            </div>
+            <div class="math-bottom">
+              These are not projections. These are formula outputs with conservative inputs. 
+              The formula is public: <strong>ε = (Actual CPM / Base) × (1 − Fraud Rate) × Uptime × GenesisMultiplier</strong>. 
+              Run it yourself. The numbers don't care whether you believe them.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: CONSENT -->
+  <section id="consent">
+    <div class="shell">
+      <div class="sec-inner">
+        <div class="sec-label">
+          <strong>§ 04</strong>
+          Consent<br>Is The<br>Product
+        </div>
+        <div>
+          <h2>WHY CONSENT MAKES THIS LEGAL AND VALUABLE</h2>
+          <p class="body-copy">
+            Without your consent, a transparent TLS-intercepting proxy is a malicious MITM attack. 
+            With your explicit, informed consent — on your own devices, your own network — it's 
+            a <em>network appliance you own</em>. The law has been clear on this since ECPA. 
+            The ad premium for verified, consented impressions exists for the same reason: 
+            accountability. An anonymous impression could be a bot. A consented one is you. 
+            That distinction is worth $2.50 per thousand more, minimum.
+          </p>
+
+          <div class="consent-card">
+            <p>
+              You are about to install a certificate authority on this device. This certificate 
+              allows the AttentionMesh proxy to inspect encrypted HTTPS traffic on this network. 
+              This is how we replace surveillance ads with clean, consented ones that pay you.
+            </p>
+            <p>
+              <strong>What this means:</strong> The proxy can read the content of HTTPS requests 
+              on this network, including page content. Banking, healthcare, and financial apps 
+              that use certificate pinning will bypass the proxy automatically and are not affected. 
+              Your passwords and messages in those apps are not visible to the proxy.
+            </p>
+            <p>
+              <strong>What we do with it:</strong> Identify and replace ad slots. We do not 
+              log, store, or transmit your browsing content. No data leaves this network node 
+              without your explicit authorization.
+            </p>
+            <div class="consent-checks" id="checks">
+              <div class="consent-check">
+                <div class="check-box" onclick="toggle(this)"></div>
+                <span>I understand the AttentionMesh proxy will inspect HTTPS traffic on this network.</span>
+              </div>
+              <div class="consent-check">
+                <div class="check-box" onclick="toggle(this)"></div>
+                <span>I am the owner or administrator of this network and have authority to enroll devices on it.</span>
+              </div>
+              <div class="consent-check">
+                <div class="check-box" onclick="toggle(this)"></div>
+                <span>I have explained this to other people on this network and they have agreed.</span>
+              </div>
+              <div class="consent-check">
+                <div class="check-box" onclick="toggle(this)"></div>
+                <span>I understand I can remove the certificate at any time to unenroll this device.</span>
+              </div>
+            </div>
+            <button class="btn-primary" id="install-btn" style="opacity:0.4;cursor:not-allowed;" disabled>
+              Install Certificate · Join Mesh
+            </button>
+          </div>
+
+          <p class="body-copy" style="font-size:12px;color:var(--mid);">
+            The consent requirement is not a legal formality. Without it, 
+            the architecture is a crime. The risk register is explicit: 
+            <em>"Without valid informed consent, this architecture is legally a malicious MITM."</em> 
+            We built the UX around this because we mean it.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: RISK REGISTER -->
+  <section>
+    <div class="shell">
+      <div class="sec-inner">
+        <div class="sec-label">
+          <strong>§ 05</strong>
+          Risk<br>Register<br>Plain<br>Language
+        </div>
+        <div>
+          <h2>WHAT CAN GO WRONG</h2>
+          <p class="body-copy">
+            We're not going to tell you this is bulletproof. Read the two High-severity items 
+            before you enroll a single device that isn't yours.
+          </p>
+
+          <table class="risk-table">
+            <thead>
+              <tr><th>Area</th><th>Failure</th><th>Sev.</th><th>Mitigation</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Consent</td>
+                <td>Operator enrolls devices without valid informed consent</td>
+                <td><span class="sev sev-hi">HIGH</span></td>
+                <td>Affirmative install UX required. Without it, architecture is legally a malicious MITM. Full stop.</td>
+              </tr>
+              <tr>
+                <td>Revenue</td>
+                <td>Cert pinning bypasses proxy for 30–50% of mobile traffic</td>
+                <td><span class="sev sev-hi">HIGH</span></td>
+                <td>Fail-open whitelist is default. Impression projections must discount for this. We disclose it here.</td>
+              </tr>
+              <tr>
+                <td>Trust</td>
+                <td>Gossip poisoning / Sybil peer injection</td>
+                <td><span class="sev sev-md">MED</span></td>
+                <td>Rate limit 5 new peers/hour. SPKI pin alert on any change.</td>
+              </tr>
+              <tr>
+                <td>Fraud</td>
+                <td>IVT fraud rate inflation</td>
+                <td><span class="sev sev-md">MED</span></td>
+                <td>Cross-validation via independent IVT detection. Spikes flagged for manual review.</td>
+              </tr>
+              <tr>
+                <td>Ads</td>
+                <td>All ad tier APIs down simultaneously</td>
+                <td><span class="sev sev-lo">LOW</span></td>
+                <td>48-hour creative cache. T3 AdEx near-100% fill as floor.</td>
+              </tr>
+              <tr>
+                <td>Peering</td>
+                <td>QR unreadable at join</td>
+                <td><span class="sev sev-lo">LOW</span></td>
+                <td>Manual IP:PORT + fingerprint entry path. Multi-peer fallback.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOIN CTA -->
+  <section id="join" style="border-bottom:none;">
+    <div class="summary-band">
+      <div class="kicker">// Genesis Slots · First 100 Nodes · 1.5× Earnings Multiplier</div>
+      <h2>THE DOOR IS OPEN</h2>
+      <p>
+        The mesh is running. The wallet pays out. The state sync has survived node failures, 
+        clock drift, and peer churn. We've been paid. The question isn't whether this works. 
+        The question is whether you think your attention belongs to you.
+      </p>
+      <div class="btn-row">
+        <button class="btn-primary">Bootstrap Your Node</button>
+        <button class="btn-ghost" onclick="document.getElementById('the-math').scrollIntoView({behavior:'smooth'})">Read the Math First</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>AttentionMesh · 2026</span>
+    <div class="stack-pills">
+      <span class="stack-pill">HAProxy</span>
+      <span class="stack-pill">Unbound DNS</span>
+      <span class="stack-pill">WireGuard</span>
+      <span class="stack-pill">DistilBERT INT8</span>
+      <span class="stack-pill">Automerge 3.0</span>
+      <span class="stack-pill">Ed25519 mTLS</span>
+      <span class="stack-pill">Stripe Connect</span>
+      <span class="stack-pill">Lightning</span>
+    </div>
+  </footer>
+
+  <script>
+    function toggle(el) {
+      el.classList.toggle('checked');
+      const boxes = document.querySelectorAll('.check-box');
+      const allChecked = [...boxes].every(b => b.classList.contains('checked'));
+      const btn = document.getElementById('install-btn');
+      if (allChecked) {
+        btn.style.opacity = '1';
+        btn.style.cursor = 'pointer';
+        btn.disabled = false;
+      } else {
+        btn.style.opacity = '0.4';
+        btn.style.cursor = 'not-allowed';
+        btn.disabled = true;
+      }
+    }
+
+    // Animate stat numbers on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.animationPlayState = 'running';
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.stat-block, .arch-node, .step').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
